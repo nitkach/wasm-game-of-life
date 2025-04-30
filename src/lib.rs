@@ -1,8 +1,7 @@
-mod utils;
-
 use std::fmt::Write;
-
 use wasm_bindgen::prelude::*;
+
+mod utils;
 
 #[wasm_bindgen]
 #[repr(u8)]
