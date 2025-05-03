@@ -102,6 +102,45 @@ impl Universe {
         }
     }
 
+    pub fn new_single_spaceship() -> Self {
+        let width = 64;
+        let height = 64;
+
+        let mut cells =
+            std::iter::repeat_n(Cell::Dead, (width * height) as usize).collect::<Vec<_>>();
+
+        let transform = |row, column| (row * width + column) as usize;
+
+        /*
+        creates single spaceship:
+        ADDAD
+        DDDDA
+        ADDDA
+        DAAAA
+         */
+        let alive_coordinates = [
+            (0, 0),
+            (0, 3),
+            (1, 4),
+            (2, 0),
+            (2, 4),
+            (3, 1),
+            (3, 2),
+            (3, 3),
+            (3, 4),
+        ];
+
+        alive_coordinates
+            .iter()
+            .for_each(|(row, column)| cells[transform(row, column)] = Cell::Alive);
+
+        Self {
+            width,
+            height,
+            cells,
+        }
+    }
+
     pub fn width(&self) -> u32 {
         self.width
     }
